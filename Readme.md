@@ -1,4 +1,4 @@
-# Redis
+# Redis Lite
 
 A Redis-inspired in-memory key-value database built from scratch to understand how systems like Redis work internally.
 
