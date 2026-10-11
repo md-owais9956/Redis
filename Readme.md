@@ -30,7 +30,7 @@ The goal is not to recreate every Redis feature, but to build the fundamental co
 
 ### Core
 
-- [ ] TCP server
+- [✔️] TCP server
 - [ ] TCP client
 - [ ] Client connection handling
 - [ ] Command parser
@@ -264,8 +264,8 @@ This project is an attempt to move beyond APIs and abstractions and understand t
 
 | Component | Status |
 |---|---|
-| Project Setup | ⬜ |
-| TCP Server | ⬜ |
+| Project Setup | ✅ |
+| TCP Server | ✅ |
 | Client | ⬜ |
 | Protocol Parser | ⬜ |
 | `PING` | ⬜ |
