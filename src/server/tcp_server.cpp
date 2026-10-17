@@ -172,6 +172,55 @@ std::string executeCommand(
         return bulkReply(it->second);
     }
 
+    
+    if (command == "EXISTS") {
+        if (args.size() < 2) {
+            return errorReply(
+                "wrong number of arguments for EXISTS"
+            );
+        }
+
+        int count = 0;
+
+        for (size_t i = 1; i < args.size(); ++i) {
+            if (database.find(args[i]) != database.end()) {
+                ++count;
+            }
+        }
+
+        return ":" + std::to_string(count) + "\r\n";
+    }
+
+    if (command == "KEYS") {
+        if (args.size() != 2) {
+            return errorReply(
+                "wrong number of arguments for KEYS"
+            );
+        }
+
+        std::vector<std::string> keys;
+
+        if (args[1] == "*") {
+            for (const auto& entry : database) {
+                keys.push_back(entry.first);
+            }
+        } else {
+            if (database.find(args[1]) != database.end()) {
+                keys.push_back(args[1]);
+            }
+        }
+
+        std::string response =
+            "*" + std::to_string(keys.size()) + "\r\n";
+
+        for (const auto& key : keys) {
+            response += bulkReply(key);
+        }
+
+        return response;
+    }
+
+
     if (command == "DEL") {
         if (args.size() < 2) {
             return errorReply("wrong number of arguments for DEL");
